@@ -10,9 +10,13 @@ fill.addEventListener('touchend', dragEnd);
 //Loop through empty containers
 for(const empty of empties) {
   empty.addEventListener('dragover', dragOver);
+  empty.addEventListener('touchmove', dragOver);
   empty.addEventListener('dragenter', dragEnter);
+  empty.addEventListener('touchmove', dragEnter);
   empty.addEventListener('dragleave', dragLeave);
+  empty.addEventListener('touchmove', dragLeave);
   empty.addEventListener('drop', dragDrop);
+  empty.addEventListener('touchend', dragDrop);
 }
 
 function dragStart() {
