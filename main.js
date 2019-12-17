@@ -2,7 +2,7 @@ const fill = document.querySelector(".fill");
 const empties = document.querySelectorAll('.empty');
 
 fill.addEventListener('dragstart', dragStart);
-fill.addEventListener('touchstart', dragStart);
+// fill.addEventListener('touchstart', dragStart);
 fill.addEventListener('dragend', dragEnd);
 fill.addEventListener('touchend', dragEnd);
 
@@ -10,14 +10,13 @@ fill.addEventListener('touchend', dragEnd);
 //Loop through empty containers
 for(const empty of empties) {
   empty.addEventListener('dragover', dragOver);
-  empty.addEventListener('touchmove', dragOver);
   empty.addEventListener('dragenter', dragEnter);
-  empty.addEventListener('touchmove', dragEnter);
   empty.addEventListener('dragleave', dragLeave);
-  empty.addEventListener('touchmove', dragLeave);
   empty.addEventListener('drop', dragDrop);
-  empty.addEventListener('touchend', dragDrop);
+
 }
+
+
 
 function dragStart() {
   this.className += ' hold';
@@ -44,4 +43,14 @@ function dragLeave() {
 function dragDrop(){
   this.className = 'empty';
   this.append(fill);
+}
+
+//Touch events
+fill.addEventListener('touchmove', touchLocation);
+
+function touchLocation(e){
+  let touchLocation = e.targetTouches[0];
+
+  fill.style.left = touchLocation.pageX + 'px';
+  fill.style.top = touchLocation.pageY + 'px';
 }
